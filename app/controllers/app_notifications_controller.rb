@@ -1,7 +1,8 @@
 class AppNotificationsController < ApplicationController
   unloadable
-  # helper :app_notifications
-  # include AppNotificationsHelper
+ 
+  helper :custom_fields
+  helper :issues
 
   def index
     @app_notifications = AppNotification.includes(:issue, :author, :journal).where(recipient_id: User.current.id).order("created_on desc")
